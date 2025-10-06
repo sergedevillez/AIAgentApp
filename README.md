@@ -68,3 +68,9 @@ Start adding entries below as you make progress.
     - Import Gemini library
     - Tested first call with hardcoded prompt
     - Deleted hardcoded prompt for prompt in argv[1] and added usage message if no prompt provided
+    - Modified prompt to be able to hold history of conversation with google.genai types
+    ```python
+    messages =[types.Content(role="user", parts=[types.Part(text=user_prompt)])]
+    ```
+    - Added verbose flag to argv[2] to show debug output
+    - Copy/paste the 
