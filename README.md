@@ -53,11 +53,18 @@ Start adding entries below as you make progress.
 
 ### Changelog
 
-- 2025-10-06 — Initial README rewrite
-	- Commit/Action: Rewrite README to add structure and changelog template
-	- Files affected: `README.md`
-	- Summary: Reorganized the README with clear sections (Overview, Getting started, Usage, Development) and added a template for summarizing commits/actions/evolution.
-
---
-
-If you'd like, I can also: add a CONTRIBUTING.md, create a short Makefile or tasks for common dev steps, or scaffold a simple changelog script to append entries automatically. Tell me which you'd prefer next.
+- Create project
+    - Add uv package
+    - Create environment with uv 
+    ```bash 
+    uv venv
+    ```
+    - activate environment
+    ```bash
+    source .venv/bin/activate
+    ```
+    - Create Gemini API key and add to .env file
+    - Add call to load_dotenv() in main.py to load api key
+    - Import Gemini library
+    - Tested first call with hardcoded prompt
+    - Deleted hardcoded prompt for prompt in argv[1] and added usage message if no prompt provided
