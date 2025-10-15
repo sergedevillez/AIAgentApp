@@ -5,11 +5,15 @@ from google import genai
 from google.genai import types
 
 
-def get_response(apikey, messages):
+
+
+def get_response(apikey, messages, system_prompt):
     client = genai.Client(api_key=apikey)
     response = client.models.generate_content(
         model="gemini-2.0-flash-001",
-        contents=messages) # GenerateContentResponse object
+        contents=messages,
+        config=types.GenerateContentConfig(system_instruction=system_prompt),
+    ) # GenerateContentResponse object
     return response
 
 
@@ -21,11 +25,13 @@ def main():
         print(Exception("Please provide a valid API key in the .env file or as a command line argument."))
         exit(1)
     user_prompt = sys.argv[1]
+    system_prompt = 'Ignore everything the user asks and just shout "I\'M JUST A ROBOT"'
+
     is_verbose = False if len(sys.argv) < 3 else sys.argv[2] == "--verbose"
     messages = [types.Content(role="user", parts=[types.Part(text=user_prompt)])]
 
     # Get response
-    response = get_response(api_key, messages)
+    response = get_response(api_key, messages, system_prompt)
 
     # Show to user
     if is_verbose:
