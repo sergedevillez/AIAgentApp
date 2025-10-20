@@ -1,6 +1,21 @@
 import os
 from config import FILE_CONTENT_MAX_SIZE
-from functions.helper import is_in_working_directory 
+from functions.helper import is_in_working_directory
+from google.genai import types
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Retrieves the content of a specific file within the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The path to the file to retrieve, relative to the working directory.",
+            ),
+        },
+    ),
+)
 
 def get_file_content(working_directory, file_path):
     # check that the file is in the working directory
